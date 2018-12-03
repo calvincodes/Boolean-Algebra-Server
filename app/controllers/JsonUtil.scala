@@ -1,6 +1,7 @@
 package controllers
 
 import play.api.libs.json.JsonConfiguration.Aux
+import play.api.libs.json.Reads.minLength
 import play.api.libs.json._
 
 object JsonUtil {
@@ -16,6 +17,10 @@ object JsonUtil {
 
     def marshal(expression: BooleanExpression): String = {
       Json.prettyPrint(Json.toJson(expression))
+    }
+
+    def minifiedMarshal(expression: BooleanExpression): String = {
+      Json.toJson(expression).toString()
     }
   }
 
