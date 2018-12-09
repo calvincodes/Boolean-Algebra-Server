@@ -2,7 +2,6 @@ package controllers
 
 import javax.inject.{Inject, Singleton}
 import play.api.mvc.{AbstractController, ControllerComponents}
-import services.Counter
 
 @Singleton
 class TransformationController @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
