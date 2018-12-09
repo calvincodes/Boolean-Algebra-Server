@@ -27,5 +27,13 @@ object Driver extends App {
     = JsonUtil
       .unmarshaller
       .unmarshal("""{"_type":"And","e1":{"e":{"symbol":"A","_type":"Variable"},"_type":"Not"},"e2":{"_type":"Or","e1":{"_type":"True"},"e2":{"_type":"And","e1":{"e":{"_type":"Or","e1":{"symbol":"B","_type":"Variable"},"e2":{"symbol":"C","_type":"Variable"}},"_type":"Not"},"e2":{"_type":"Or","e1":{"symbol":"D","_type":"Variable"},"e2":{"symbol":"E","_type":"Variable"}}}}}""")
-  println(s"Deserializing Expression:\n\n$expr")
+
+  println(s"Deserializing Expression:\n\n$expr\n")
+
+
+  println(s"CNF Form:\n\n${TransformerFactory.transform(expression, TransformationType.CNF)}\n")
+
+
+  println(s"DNF Form:\n\n${TransformerFactory.transform(expression, TransformationType.DNF)}\n")
+
 }
