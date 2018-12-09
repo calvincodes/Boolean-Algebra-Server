@@ -5,8 +5,7 @@ import play.api.mvc.{AbstractController, ControllerComponents}
 import services.Counter
 
 @Singleton
-class TransformationController @Inject() (cc: ControllerComponents,
-                                          counter: Counter) extends AbstractController(cc) {
+class TransformationController @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
 
   def getDNF = Action {request => {
     val json = request.body.asJson.get
