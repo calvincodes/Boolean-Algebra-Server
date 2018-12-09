@@ -11,6 +11,7 @@ object Driver extends App {
 
   println(s"f(x=5) = ${f(5)}\n\n")
 
+  println("******************************************\n")
   println("Using APIs and testing: JSON serialization\n")
 
   val expression = And(
@@ -43,6 +44,7 @@ object Driver extends App {
 
   println(s"Deserializing Expression:\n\n$expr\n\n")
 
+  println("******************************************\n")
   println("Bonus assignments | Algebraic transformation\n")
   println(s"Expression under test: $expression\n")
 
