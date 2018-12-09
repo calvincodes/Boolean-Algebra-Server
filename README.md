@@ -24,5 +24,19 @@ def f(x: Int) : Int = {
 2. As the library function used for this problem is having O(1) complexity and is already optimised, hence the only possible way to optimize is to implement a better algorithm than the one used by Java library function.
 
 ## Using APIs and testing: JSON serialization
+* JSON Library: play.api.libs.json
+* Build Tool: sbt
+* Testing: ScalaTest
+
+1. Unmarshalling: Convert JSON string of boolean expression into BooleanExpression object
+2. Marshalling: Converts BooleanExpression object to JSON string
+
+* `Driver` class provides the a running example of basic test cases. Please run the same in your IDE. 
+* All test cases reside in the test directory. Please run the same in your IDE. To run them from terminal, please execute `sbt test`.
 
 ## Bonus assignments
+
+* Boolean Algebra Server using: Play Framework
+
+1. Algebraic Transformation: Functionality of DNF and CNF transformation has been added. A running example for both is available in `Driver` class.
+2. You may startup the server using your IDE. To start the server from terminal, execute the command `sbt run`. Open the page `http://localhost:9000` which provides sample cURL requests.

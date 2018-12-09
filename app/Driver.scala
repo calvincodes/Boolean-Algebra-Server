@@ -11,6 +11,7 @@ object Driver extends App {
 
   println(s"f(x=5) = ${f(5)}\n\n")
 
+  println("******************************************\n")
   println("Using APIs and testing: JSON serialization\n")
 
   val expression = And(
@@ -34,15 +35,16 @@ object Driver extends App {
 
   println(s"Expression under test: $expression\n")
 
-  println(s"Serializing Expression:\n\n${JsonUtil.marshaller.marshal(expression)}\n")
+  println(s"Serializing Expression:\n\n${JSONUtil.marshaller.marshal(expression)}\n")
 
   val expr
-    = JsonUtil
+    = JSONUtil
       .unmarshaller
       .unmarshal("""{"_type":"And","e1":{"e":{"symbol":"A","_type":"Variable"},"_type":"Not"},"e2":{"_type":"Or","e1":{"_type":"True"},"e2":{"_type":"And","e1":{"e":{"_type":"Or","e1":{"symbol":"B","_type":"Variable"},"e2":{"symbol":"C","_type":"Variable"}},"_type":"Not"},"e2":{"_type":"Or","e1":{"symbol":"D","_type":"Variable"},"e2":{"symbol":"E","_type":"Variable"}}}}}""")
 
   println(s"Deserializing Expression:\n\n$expr\n\n")
 
+  println("******************************************\n")
   println("Bonus assignments | Algebraic transformation\n")
   println(s"Expression under test: $expression\n")
 

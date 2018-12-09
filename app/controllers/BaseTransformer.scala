@@ -1,7 +1,15 @@
 package controllers
 
+/**
+  * Base class to be extended for creation of any form of algebraic transformer.
+  */
 sealed abstract class BaseTransformer {
 
+  /**
+    * Base transformer for conversion to normal form.
+    * @param expression [[BooleanExpression]] to be transformed to normal form
+    * @return [[BooleanExpression]] representing normal form
+    */
   def transform(expression: BooleanExpression): BooleanExpression = {
     expression match {
       case True | False | Variable(_) => expression
@@ -18,13 +26,28 @@ sealed abstract class BaseTransformer {
     }
   }
 
+  /**
+    * Transformation of And is to be overridden as per the CNF or DNF type
+    * @param and [[And]] of two expressions
+    * @return [[BooleanExpression]] representing normal form
+    */
   def transform(and: And): BooleanExpression
 
+  /**
+    * Transformation of Or is to be overridden as per the CNF or DNF type
+    * @param or [[Or]] of two expressions
+    * @return [[BooleanExpression]] representing normal form
+    */
   def transform(or: Or): BooleanExpression
 
+  /**
+    * Creates a set that contains all ordered pairs (x, y) where x belongs to e1 and y belongs to e2
+    * @param e1 Sequence of boolean expressions
+    * @param e2 Sequence of boolean expressions
+    * @return Sequence of set of boolean expressions
+    */
   def cartesianProduct(
         e1: Seq[BooleanExpression], e2: Seq[BooleanExpression]): Seq[(BooleanExpression, BooleanExpression)] = {
-    // Create a set that contains all ordered pairs (x, y) where x belongs to e1 and y belongs to e2
     for {
           x <- e1
           y <- e2
@@ -34,6 +57,12 @@ sealed abstract class BaseTransformer {
 
 case object CNFTransformer extends BaseTransformer {
 
+  /**
+    * Flatten nested [[And]] expression
+    * @param and Expressions in form of nested [[And]]
+    * @tparam T Expression of type [[And]]
+    * @return Sequence of boolean expressions with flattened [[And]]
+    */
   def andFlatten[T <: BooleanExpression](and: T): Seq[BooleanExpression] = {
     def flattenRecursive(expr: BooleanExpression): Seq[BooleanExpression] = expr match {
       case And(e1, e2) => List(e1, e2).flatMap(flattenRecursive)
@@ -64,6 +93,11 @@ case object CNFTransformer extends BaseTransformer {
 
 case object DNFTransformer extends BaseTransformer {
 
+  /**
+    * Flatten nested [[Or]] expression
+    * @param or Expressions in form of nested [[Or]]
+    * @return Sequence of boolean expressions with flattened [[Or]]
+    */
   def orFlatten(or: Or): Seq[BooleanExpression] = {
     def flattenRecursive(expr: BooleanExpression): Seq[BooleanExpression] = expr match {
       case Or(e1, e2) => List(e1, e2).flatMap(flattenRecursive)

@@ -3,10 +3,18 @@ package controllers
 import play.api.libs.json.JsonConfiguration.Aux
 import play.api.libs.json._
 
-object JsonUtil {
+/**
+  * Utility for handling all form of JSON marshalling and unmarshalling
+  */
+object JSONUtil {
 
   object unmarshaller extends JSONFormatter {
 
+    /**
+      * Convert JSON string of boolean expression into [[BooleanExpression]] object
+      * @param booleanExpression JSON string representing a boolean expression
+      * @return [[BooleanExpression]] object
+      */
     def unmarshal(booleanExpression: String) : BooleanExpression = {
       Json.parse(booleanExpression).as[BooleanExpression]
     }
@@ -14,10 +22,21 @@ object JsonUtil {
 
   object marshaller extends JSONFormatter {
 
+    /**
+      * Converts [[BooleanExpression]] object to JSON string
+      * @param expression [[BooleanExpression]] object
+      * @return JSON string representing a boolean expression
+      */
     def marshal(expression: BooleanExpression): String = {
       Json.prettyPrint(Json.toJson(expression))
     }
 
+    /**
+      * Converts [[BooleanExpression]] object to <i>minified</i> JSON string.
+      * Used mainly during test cases.
+      * @param expression [[BooleanExpression]] object
+      * @return JSON string representing a boolean expression
+      */
     def minifiedMarshal(expression: BooleanExpression): String = {
       Json.toJson(expression).toString()
     }
