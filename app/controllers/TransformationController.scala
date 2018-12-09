@@ -8,7 +8,7 @@ class TransformationController @Inject() (cc: ControllerComponents) extends Abst
 
   def getDNF = Action {request => {
     val json = request.body.asJson.get
-    val expr = JsonUtil
+    val expr = JSONUtil
       .unmarshaller
       .unmarshal(json.toString())
     println(expr)
@@ -17,7 +17,7 @@ class TransformationController @Inject() (cc: ControllerComponents) extends Abst
 
   def getCNF = Action {request => {
     val json = request.body.asJson.get
-    val expr = JsonUtil
+    val expr = JSONUtil
                 .unmarshaller
                 .unmarshal(json.toString())
     println(expr)

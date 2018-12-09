@@ -34,10 +34,10 @@ object Driver extends App {
 
   println(s"Expression under test: $expression\n")
 
-  println(s"Serializing Expression:\n\n${JsonUtil.marshaller.marshal(expression)}\n")
+  println(s"Serializing Expression:\n\n${JSONUtil.marshaller.marshal(expression)}\n")
 
   val expr
-    = JsonUtil
+    = JSONUtil
       .unmarshaller
       .unmarshal("""{"_type":"And","e1":{"e":{"symbol":"A","_type":"Variable"},"_type":"Not"},"e2":{"_type":"Or","e1":{"_type":"True"},"e2":{"_type":"And","e1":{"e":{"_type":"Or","e1":{"symbol":"B","_type":"Variable"},"e2":{"symbol":"C","_type":"Variable"}},"_type":"Not"},"e2":{"_type":"Or","e1":{"symbol":"D","_type":"Variable"},"e2":{"symbol":"E","_type":"Variable"}}}}}""")
 

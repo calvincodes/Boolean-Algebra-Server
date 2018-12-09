@@ -6,7 +6,7 @@ import play.api.libs.json._
 /**
   * Utility for handling all form of JSON marshalling and unmarshalling
   */
-object JsonUtil {
+object JSONUtil {
 
   object unmarshaller extends JSONFormatter {
 
