@@ -1,6 +1,17 @@
 import controllers._
+import scala.math.pow
 
 object Driver extends App {
+
+  println("Warmup\n")
+
+  def f(x: Int) : Int = {
+    pow(2, x).toInt
+  }
+
+  println(s"f(x=5) = ${f(5)}\n\n")
+
+  println("Using APIs and testing: JSON serialization\n")
 
   val expression = And(
     Not(Variable("A")),
